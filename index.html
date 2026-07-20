@@ -1,0 +1,350 @@
+<title>JN Softworks — Building Ideas</title>
+<meta name="description" content="JN Softworks is a solo indie studio building developer tools, starting with Nodux — a node-based dialogue system for Unreal Engine.">
+<style>
+  :root {
+    --bg: #06090f;
+    --bg-panel: #0c1526;
+    --bg-panel-border: rgba(138, 148, 166, 0.16);
+    --navy: #0b1d3a;
+    --grey: #8a94a6;
+    --grey-dim: rgba(138, 148, 166, 0.55);
+    --orange: #ff6b35;
+    --orange-dim: rgba(255, 107, 53, 0.35);
+    --text: #e9ecf3;
+    --text-dim: #8a94a6;
+    --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle, rgba(138, 148, 166, 0.14) 1px, transparent 1px);
+    background-size: 26px 26px;
+    background-position: -13px -13px;
+  }
+
+  .corner-trace {
+    position: fixed;
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+    opacity: 0.55;
+    z-index: 0;
+  }
+  .corner-trace.tl { top: -20px; left: -20px; }
+  .corner-trace.br { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+  .corner-trace .pulse {
+    animation: pulse 4.5s ease-in-out infinite;
+  }
+  .corner-trace .pulse.delay { animation-delay: 2.2s; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .corner-trace .pulse { animation: none; opacity: 0.7; }
+    .fade-in { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 6rem 1.75rem 4rem;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.7s ease-out forwards;
+  }
+  .fade-in.d1 { animation-delay: 0.05s; }
+  .fade-in.d2 { animation-delay: 0.15s; }
+  .fade-in.d3 { animation-delay: 0.25s; }
+  .fade-in.d4 { animation-delay: 0.35s; }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { text-align: center; }
+
+  .mark {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.75rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+
+  .wordmark .n-accent { color: var(--orange); }
+
+  .tagline {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--text-dim);
+    margin: 0.6rem 0 2.25rem;
+  }
+
+  .hero-copy {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 34em;
+    margin: 0 auto;
+  }
+
+  .hero-copy .studio-accent { color: var(--orange); }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 2.25rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+  }
+
+  .btn-ghost {
+    color: var(--text-dim);
+    border: 1px solid var(--bg-panel-border);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: var(--grey-dim);
+    transform: translateY(-1px);
+  }
+
+  section.products {
+    margin-top: 5.5rem;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    margin: 0 0 1.1rem;
+  }
+  .section-label::before { content: "// "; color: var(--orange); }
+
+  .product-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--bg-panel-border);
+    border-radius: 10px;
+    padding: 1.9rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .product-card:hover {
+    border-color: var(--orange-dim);
+    transform: translateY(-2px);
+  }
+
+  .product-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .product-head h3 {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--orange);
+    border: 1px solid var(--orange-dim);
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    white-space: nowrap;
+  }
+
+  .product-tag {
+    font-family: var(--font-mono);
+    color: var(--grey);
+    font-size: 0.95rem;
+    margin: 0.6rem 0 0;
+  }
+
+  .product-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0.9rem 0 0;
+    max-width: 42em;
+  }
+
+  .product-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--navy), var(--orange));
+    color: #06090f;
+    font-weight: 700;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 0 1px var(--orange-dim), 0 6px 18px -6px rgba(255, 107, 53, 0.45);
+    transform: translateY(-1px);
+  }
+
+  footer {
+    margin-top: 6rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--bg-panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--bg-panel-border);
+  }
+  footer a:hover { color: var(--orange); border-color: var(--orange-dim); }
+
+  @media (max-width: 480px) {
+    .page { padding: 4rem 1.25rem 3rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="corner-trace tl" aria-hidden="true">
+  <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 60H70L100 90V160" stroke="#8a94a6" stroke-opacity="0.35" stroke-width="1"/>
+    <path d="M0 110H40L60 130V260" stroke="#ff6b35" stroke-opacity="0.3" stroke-width="1"/>
+    <circle class="pulse" cx="100" cy="90" r="2.5" fill="#ff6b35"/>
+    <circle class="pulse delay" cx="60" cy="130" r="2" fill="#8a94a6"/>
+    <circle cx="70" cy="60" r="2" fill="#8a94a6" fill-opacity="0.5"/>
+  </svg>
+</div>
+<div class="corner-trace br" aria-hidden="true">
+  <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 60H70L100 90V160" stroke="#8a94a6" stroke-opacity="0.35" stroke-width="1"/>
+    <path d="M0 110H40L60 130V260" stroke="#ff6b35" stroke-opacity="0.3" stroke-width="1"/>
+    <circle class="pulse" cx="100" cy="90" r="2.5" fill="#ff6b35"/>
+    <circle class="pulse delay" cx="60" cy="130" r="2" fill="#8a94a6"/>
+    <circle cx="70" cy="60" r="2" fill="#8a94a6" fill-opacity="0.5"/>
+  </svg>
+</div>
+
+<div class="page">
+  <header class="hero">
+    <div class="mark fade-in">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="jnGrad" x1="4" y1="60" x2="60" y2="4" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0b1d3a"/>
+            <stop offset="1" stop-color="#ff6b35"/>
+          </linearGradient>
+        </defs>
+        <rect x="1.5" y="1.5" width="61" height="61" rx="14" stroke="#8a94a6" stroke-opacity="0.3"/>
+        <line x1="8" y1="8" x2="16" y2="16" stroke="#8a94a6" stroke-opacity="0.4" stroke-width="1"/>
+        <circle cx="8" cy="8" r="1.6" fill="#8a94a6" fill-opacity="0.6"/>
+        <line x1="56" y1="56" x2="48" y2="48" stroke="#8a94a6" stroke-opacity="0.4" stroke-width="1"/>
+        <circle cx="56" cy="56" r="1.6" fill="#8a94a6" fill-opacity="0.6"/>
+        <text x="32" y="42" text-anchor="middle" font-family="'JetBrains Mono','Cascadia Code',ui-monospace,Consolas,monospace" font-weight="700" font-size="27" letter-spacing="-1" fill="url(#jnGrad)">JN</text>
+        <rect x="45" y="12" width="7" height="7" fill="#ff6b35" transform="rotate(45 48.5 15.5)"/>
+      </svg>
+    </div>
+    <h1 class="wordmark fade-in d1">JN SOFTWORKS<span class="n-accent">.</span></h1>
+    <p class="tagline fade-in d2">Building Ideas</p>
+    <p class="hero-copy fade-in d3">
+      JN Softworks is a solo indie studio building developer tools for game creators.
+      Our flagship release, <span class="studio-accent">Nodux</span>, is a node-based dialogue
+      system for Unreal Engine — more tools are on the way.
+    </p>
+    <div class="hero-links fade-in d4">
+      <a class="btn btn-ghost" href="https://discord.gg/EzWsWAMff">Discord ↗</a>
+      <a class="btn btn-ghost" href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="products fade-in d4">
+      <p class="section-label">products</p>
+      <article class="product-card">
+        <div class="product-head">
+          <h3>Nodux</h3>
+          <span class="badge">Coming soon on Fab</span>
+        </div>
+        <p class="product-tag">Node-based dialogue system for Unreal Engine</p>
+        <p class="product-desc">
+          A visual, node-based editor for branching, condition-driven dialogue.
+          Built for fast authoring, flexible DataTable-backed content, and dialogue
+          trees that stay maintainable as they grow.
+        </p>
+        <div class="product-links">
+          <a class="btn btn-primary" href="#">View on Fab →</a>
+          <a class="btn btn-ghost" href="https://discord.gg/EzWsWAMff">Support Discord</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 JN Softworks</span>
+    <a href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a>
+  </footer>
+</div>
