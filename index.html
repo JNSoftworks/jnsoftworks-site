@@ -1,5 +1,13 @@
 <title>JN Softworks — Building Ideas</title>
-<meta name="description" content="JN Softworks is a solo indie studio building developer tools, starting with Nodux — a node-based dialogue system for Unreal Engine.">
+<meta name="description" content="JN Softworks is an independent studio creating games and tools for game developers. We're starting with Nodux, a node-based dialogue system for Unreal Engine — with original games and more tools to come.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jnsoftworks.com/">
+<meta property="og:title" content="JN Softworks — Building Ideas">
+<meta property="og:description" content="JN Softworks is an independent studio creating games and tools for game developers. We're starting with Nodux, a node-based dialogue system for Unreal Engine — with original games and more tools to come.">
+<meta property="og:image" content="https://jnsoftworks.com/assets/banner.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
     --bg: #06090f;
@@ -86,29 +94,25 @@
 
   .hero { text-align: center; }
 
-  .mark {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 1.75rem;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  .wordmark {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: clamp(1.6rem, 5vw, 2.3rem);
-    letter-spacing: 0.06em;
-    margin: 0;
-  }
-
-  .wordmark .n-accent { color: var(--orange); }
-
-  .tagline {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: var(--text-dim);
-    margin: 0.6rem 0 2.25rem;
+  .banner {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    margin: 0 auto 2.25rem;
+    filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.55));
   }
 
   .hero-copy {
@@ -291,31 +295,14 @@
 
 <div class="page">
   <header class="hero">
-    <div class="mark fade-in">
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="jnGrad" x1="4" y1="60" x2="60" y2="4" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#0b1d3a"/>
-            <stop offset="1" stop-color="#ff6b35"/>
-          </linearGradient>
-        </defs>
-        <rect x="1.5" y="1.5" width="61" height="61" rx="14" stroke="#8a94a6" stroke-opacity="0.3"/>
-        <line x1="8" y1="8" x2="16" y2="16" stroke="#8a94a6" stroke-opacity="0.4" stroke-width="1"/>
-        <circle cx="8" cy="8" r="1.6" fill="#8a94a6" fill-opacity="0.6"/>
-        <line x1="56" y1="56" x2="48" y2="48" stroke="#8a94a6" stroke-opacity="0.4" stroke-width="1"/>
-        <circle cx="56" cy="56" r="1.6" fill="#8a94a6" fill-opacity="0.6"/>
-        <text x="32" y="42" text-anchor="middle" font-family="'JetBrains Mono','Cascadia Code',ui-monospace,Consolas,monospace" font-weight="700" font-size="27" letter-spacing="-1" fill="url(#jnGrad)">JN</text>
-        <rect x="45" y="12" width="7" height="7" fill="#ff6b35" transform="rotate(45 48.5 15.5)"/>
-      </svg>
-    </div>
-    <h1 class="wordmark fade-in d1">JN SOFTWORKS<span class="n-accent">.</span></h1>
-    <p class="tagline fade-in d2">Building Ideas</p>
-    <p class="hero-copy fade-in d3">
-      JN Softworks is a solo indie studio building developer tools for game creators.
-      Our flagship release, <span class="studio-accent">Nodux</span>, is a node-based dialogue
-      system for Unreal Engine — more tools are on the way.
+    <img class="banner fade-in" src="assets/banner.png" alt="JN Softworks — Building Ideas" width="1400" height="788">
+    <h1 class="sr-only">JN Softworks — Building Ideas</h1>
+    <p class="hero-copy fade-in d1">
+      JN Softworks is an independent studio creating games and tools for game developers.
+      We're starting with <span class="studio-accent">Nodux</span>, a node-based dialogue system
+      for Unreal Engine — with original games and more tools to come.
     </p>
-    <div class="hero-links fade-in d4">
+    <div class="hero-links fade-in d2">
       <a class="btn btn-ghost" href="https://discord.gg/EzWsWAMff">Discord ↗</a>
       <a class="btn btn-ghost" href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a>
     </div>
