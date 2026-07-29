@@ -1,0 +1,391 @@
+<title>Resume — Jaber Felippe Neto | JN Softworks</title>
+<meta name="description" content="Resume of Jaber Felippe Neto — Unreal Engine Programmer (C++/Blueprint), founder of JN Softworks.">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://jnsoftworks.com/curriculo">
+<meta property="og:title" content="Resume — Jaber Felippe Neto">
+<meta property="og:description" content="Unreal Engine Programmer (C++/Blueprint), founder of JN Softworks.">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    --bg: #06090f;
+    --bg-panel: #0c1526;
+    --bg-panel-border: rgba(138, 148, 166, 0.16);
+    --navy: #0b1d3a;
+    --grey: #8a94a6;
+    --grey-dim: rgba(138, 148, 166, 0.55);
+    --orange: #ff6b35;
+    --orange-dim: rgba(255, 107, 53, 0.35);
+    --text: #e9ecf3;
+    --text-dim: #8a94a6;
+    --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle, rgba(138, 148, 166, 0.14) 1px, transparent 1px);
+    background-size: 26px 26px;
+    background-position: -13px -13px;
+  }
+
+  .corner-trace {
+    position: fixed;
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+    opacity: 0.55;
+    z-index: 0;
+  }
+  .corner-trace.tl { top: -20px; left: -20px; }
+  .corner-trace.br { bottom: -20px; right: -20px; transform: rotate(180deg); }
+  .corner-trace .pulse { animation: pulse 4.5s ease-in-out infinite; }
+  .corner-trace .pulse.delay { animation-delay: 2.2s; }
+  @keyframes pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .corner-trace .pulse { animation: none; opacity: 0.7; }
+    .fade-in { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4.5rem 1.75rem 4rem;
+  }
+
+  .fade-in { opacity: 0; transform: translateY(10px); animation: fadeIn 0.7s ease-out forwards; }
+  .fade-in.d1 { animation-delay: 0.05s; }
+  .fade-in.d2 { animation-delay: 0.15s; }
+  .fade-in.d3 { animation-delay: 0.25s; }
+  .fade-in.d4 { animation-delay: 0.35s; }
+  @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-bottom: 2rem;
+  }
+  .back-link:hover { color: var(--orange); }
+
+  header.hero { text-align: left; }
+
+  .name {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .role {
+    font-family: var(--font-mono);
+    color: var(--orange);
+    font-size: 1rem;
+    margin: 0.5rem 0 0;
+  }
+  .contact-line {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 0.9rem 0 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .contact-line a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid var(--bg-panel-border); }
+  .contact-line a:hover { color: var(--orange); border-color: var(--orange-dim); }
+
+  .summary {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--text);
+    max-width: 42em;
+    margin: 1.75rem 0 0;
+  }
+  .summary .accent { color: var(--orange); }
+
+  .hero-links {
+    display: flex;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+  .btn-ghost { color: var(--text-dim); border: 1px solid var(--bg-panel-border); background: transparent; }
+  .btn-ghost:hover { color: var(--text); border-color: var(--grey-dim); transform: translateY(-1px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--navy), var(--orange));
+    color: #06090f;
+    font-weight: 700;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 0 1px var(--orange-dim), 0 6px 18px -6px rgba(255, 107, 53, 0.45);
+    transform: translateY(-1px);
+  }
+  .pdf-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--grey-dim);
+  }
+
+  section.block { margin-top: 3.5rem; }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    margin: 0 0 1.1rem;
+  }
+  .section-label::before { content: "// "; color: var(--orange); }
+
+  .entry-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--bg-panel-border);
+    border-radius: 10px;
+    padding: 1.6rem 1.9rem;
+    margin-bottom: 1.1rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .entry-card:last-child { margin-bottom: 0; }
+  .entry-card:hover { border-color: var(--orange-dim); transform: translateY(-2px); }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .entry-head h3 {
+    font-family: var(--font-mono);
+    font-size: 1.08rem;
+    margin: 0;
+    letter-spacing: 0.01em;
+    color: var(--text);
+  }
+  .entry-date {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--grey);
+    white-space: nowrap;
+  }
+  .entry-card ul {
+    margin: 0.85rem 0 0;
+    padding-left: 1.15rem;
+    line-height: 1.65;
+  }
+  .entry-card li { margin-bottom: 0.5rem; }
+  .entry-card li:last-child { margin-bottom: 0; }
+  .entry-card li::marker { color: var(--orange); }
+  .entry-card em { color: var(--text); font-style: normal; border-bottom: 1px dotted var(--grey-dim); }
+
+  .edu-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--bg-panel-border);
+    border-radius: 10px;
+    padding: 1.4rem 1.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+  }
+  .edu-card:last-child { margin-bottom: 0; }
+  .edu-card .what { font-family: var(--font-mono); font-size: 1rem; color: var(--text); }
+  .edu-card .where { font-family: var(--font-mono); font-size: 0.85rem; color: var(--grey); }
+
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text);
+    background: var(--bg-panel);
+    border: 1px solid var(--bg-panel-border);
+    border-left: 2.5px solid var(--orange);
+    padding: 0.45rem 0.85rem;
+    border-radius: 5px;
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--bg-panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+  footer a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid var(--bg-panel-border); }
+  footer a:hover { color: var(--orange); border-color: var(--orange-dim); }
+
+  @media (max-width: 480px) {
+    .page { padding: 3rem 1.25rem 3rem; }
+    .entry-card, .edu-card { padding: 1.3rem 1.25rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media print {
+    body { background: #06090f; }
+    .corner-trace, .back-link { display: none; }
+  }
+</style>
+
+<div class="corner-trace tl" aria-hidden="true">
+  <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 60H70L100 90V160" stroke="#8a94a6" stroke-opacity="0.35" stroke-width="1"/>
+    <path d="M0 110H40L60 130V260" stroke="#ff6b35" stroke-opacity="0.3" stroke-width="1"/>
+    <circle class="pulse" cx="100" cy="90" r="2.5" fill="#ff6b35"/>
+    <circle class="pulse delay" cx="60" cy="130" r="2" fill="#8a94a6"/>
+    <circle cx="70" cy="60" r="2" fill="#8a94a6" fill-opacity="0.5"/>
+  </svg>
+</div>
+<div class="corner-trace br" aria-hidden="true">
+  <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 60H70L100 90V160" stroke="#8a94a6" stroke-opacity="0.35" stroke-width="1"/>
+    <path d="M0 110H40L60 130V260" stroke="#ff6b35" stroke-opacity="0.3" stroke-width="1"/>
+    <circle class="pulse" cx="100" cy="90" r="2.5" fill="#ff6b35"/>
+    <circle class="pulse delay" cx="60" cy="130" r="2" fill="#8a94a6"/>
+    <circle cx="70" cy="60" r="2" fill="#8a94a6" fill-opacity="0.5"/>
+  </svg>
+</div>
+
+<div class="page">
+  <a class="back-link" href="../">← JN Softworks</a>
+
+  <header class="hero fade-in">
+    <p class="name">Jaber Felippe Neto</p>
+    <p class="role">Unreal Engine Programmer (C++ / Blueprint)</p>
+    <p class="contact-line">
+      <a href="mailto:jaber.neto@gmail.com">jaber.neto@gmail.com</a>
+      <span>jnsoftworks.com</span>
+    </p>
+    <p class="summary">
+      Electrical engineer by training (2019) and programmer by vocation. Working with
+      <span class="accent">Unreal Engine</span> since May 2021 — started out as a freelancer on
+      Fiverr, building a 5.0★ record across 60 reviews (100% five-star) for clients in 15+
+      countries. Today I build my own systems and products, including procedural animation,
+      character physics, and a node-based dialogue plugin launching on Fab in August 2026.
+    </p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="../assets/curriculo-jaber-felippe-neto.pdf" download>Download PDF ↓</a>
+      <a class="btn btn-ghost" href="mailto:jaber.neto@gmail.com">Contact</a>
+      <span class="pdf-note">(PDF is in Portuguese)</span>
+    </div>
+  </header>
+
+  <section class="block fade-in d1">
+    <p class="section-label">experience</p>
+
+    <div class="entry-card">
+      <div class="entry-head">
+        <h3>Independent Developer — JN Softworks</h3>
+        <span class="entry-date">2021 – present</span>
+      </div>
+      <ul>
+        <li>Full procedural locomotion system for robotic characters in <em>Advent Guard</em>
+          (Carbyne Games, in development): per-foot scene components plus an actor component
+          driving the movement calculations, resolved visually through an Animation Blueprint and
+          a per-character Control Rig (each robot has different joints) — six months of iterative
+          development.</li>
+        <li>Hit reaction system via tuned Physical Animation plus bone impulses on impact,
+          including physical dismemberment when a body part's hitpoints reach zero.</li>
+        <li>Nodux — a commercial node-based dialogue plugin for Unreal Engine (C++ and Blueprint),
+          launching on Fab (Epic Games' marketplace) in August 2026.</li>
+      </ul>
+    </div>
+
+    <div class="entry-card">
+      <div class="entry-head">
+        <h3>Freelance Unreal Engine Developer — Fiverr</h3>
+        <span class="entry-date">May 2021 – 2024</span>
+      </div>
+      <ul>
+        <li>5.0★ across 60 reviews (100% five-star), top marks in communication, quality, and
+          value. Repeat clients across 15+ countries.</li>
+        <li>Delivered systems ranging from inventories, hit/strike animation, weapon firing with
+          bullet physics/tracing, and Behavior Tree–based AI, to a from-scratch physics-based
+          movement system praised for clean, well-organized code.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block fade-in d2">
+    <p class="section-label">education</p>
+    <div class="edu-card">
+      <span class="what">Bachelor's in Electrical Engineering</span>
+      <span class="where">Universidade Positivo, 2019</span>
+    </div>
+  </section>
+
+  <section class="block fade-in d2">
+    <p class="section-label">languages</p>
+    <div class="edu-card">
+      <span class="what">English</span>
+      <span class="where">fluent listening comprehension · advanced speaking</span>
+    </div>
+  </section>
+
+  <section class="block fade-in d3">
+    <p class="section-label">technical skills</p>
+    <div class="skills">
+      <span class="chip">Unreal Engine (C++, Blueprint)</span>
+      <span class="chip">Animation Blueprint &amp; Control Rig</span>
+      <span class="chip">Physical Animation / Hit Reaction</span>
+      <span class="chip">Multiplayer / Networking (Unreal Engine)</span>
+      <span class="chip">Behavior Trees (AI)</span>
+      <span class="chip">Physics-based movement systems</span>
+      <span class="chip">Python (Editor Scripting)</span>
+      <span class="chip">Editor tools / plugins</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 JN Softworks</span>
+    <a href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a>
+  </footer>
+</div>
