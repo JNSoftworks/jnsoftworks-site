@@ -264,8 +264,33 @@
   }
 
   @media print {
-    body { background: #06090f; }
-    .corner-trace, .back-link { display: none; }
+    :root {
+      --bg: #ffffff;
+      --bg-panel: #f4f5f7;
+      --bg-panel-border: rgba(11, 29, 58, 0.12);
+      --grey: #5a6472;
+      --grey-dim: rgba(90, 100, 114, 0.5);
+      --text: #1a1a1a;
+      --text-dim: #5a6472;
+    }
+    body { background: #ffffff; }
+    .corner-trace, .back-link, .hero-links, footer { display: none; }
+    .fade-in { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .page { padding: 0; max-width: 100%; }
+    .name { font-size: 1.75rem; }
+    .role { font-size: 0.92rem; margin-top: 0.35rem; }
+    .summary { margin-top: 0.8rem; line-height: 1.42; font-size: 0.95rem; }
+    .contact-line { margin-top: 0.4rem; }
+    section.block { margin-top: 0.75rem; }
+    .section-label { margin-bottom: 0.45rem; }
+    .entry-card { padding: 0.75rem 1.2rem; margin-bottom: 0.45rem; }
+    .entry-head h3 { font-size: 0.98rem; }
+    .entry-card ul { margin-top: 0.4rem; line-height: 1.38; font-size: 0.93rem; }
+    .entry-card li { margin-bottom: 0.22rem; }
+    .edu-card { padding: 0.5rem 1.2rem; margin-bottom: 0.35rem; }
+    .skills { gap: 0.4rem; }
+    .chip { padding: 0.32rem 0.7rem; font-size: 0.78rem; }
+    .entry-card:hover, .edu-card:hover { border-color: var(--bg-panel-border); transform: none; }
   }
 </style>
 
@@ -308,6 +333,7 @@
     <div class="hero-links">
       <a class="btn btn-primary" href="../assets/resume-jaber-felippe-neto-en.pdf" download>Download PDF (EN) ↓</a>
       <a class="btn btn-primary" href="../assets/curriculo-jaber-felippe-neto.pdf" download>Download PDF (PT) ↓</a>
+      <a class="btn btn-ghost" href="pt/">Ver em Português →</a>
       <a class="btn btn-ghost" href="mailto:jaber.neto@gmail.com">Contact</a>
     </div>
   </header>
@@ -328,7 +354,7 @@
           development.</li>
         <li>Hit reaction system via tuned Physical Animation plus bone impulses on impact,
           including physical dismemberment when a body part's hitpoints reach zero.</li>
-        <li>Nodux — a commercial node-based dialogue plugin for Unreal Engine (C++ and Blueprint),
+        <li>Questryn — a commercial node-based dialogue plugin for Unreal Engine (C++ and Blueprint),
           launching on Fab (Epic Games' marketplace) in August 2026.</li>
       </ul>
     </div>
@@ -358,6 +384,10 @@
 
   <section class="block fade-in d2">
     <p class="section-label">languages</p>
+    <div class="edu-card">
+      <span class="what">Portuguese</span>
+      <span class="where">native</span>
+    </div>
     <div class="edu-card">
       <span class="what">English</span>
       <span class="where">fluent listening comprehension · advanced speaking</span>
