@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<meta name="theme-color" content="#11141C" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Minha OS" />
+<title>Minha OS - Ordens de Serviço</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <h1 id="topbar-titulo">Minha OS<span class="sub" id="topbar-sub">Ordens de serviço</span></h1>
+  </div>
+
+  <main>
+    <section class="view" id="view-home"></section>
+    <section class="view" id="view-nova-os"></section>
+    <section class="view" id="view-historico"></section>
+    <section class="view" id="view-cadastros"></section>
+  </main>
+
+  <nav class="navbar">
+    <button data-view="home"><span class="ic">🏠</span><span class="lb">Início</span></button>
+    <button data-view="nova-os"><span class="ic">📝</span><span class="lb">Nova OS</span></button>
+    <button data-view="historico"><span class="ic">🗂️</span><span class="lb">Ver Ordens</span></button>
+    <button data-view="cadastros"><span class="ic">🔧</span><span class="lb">Cadastros</span></button>
+  </nav>
+</div>
+
+<div class="overlay" id="overlay-sheet">
+  <div class="overlay-fundo" style="position:absolute;inset:0"></div>
+  <div class="sheet" id="sheet-body-wrap">
+    <div id="sheet-body"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-confirm">
+  <div class="overlay-fundo" style="position:absolute;inset:0"></div>
+  <div class="sheet center">
+    <h3 id="confirm-titulo">Confirmar</h3>
+    <p id="confirm-msg" style="color:var(--text-muted);font-size:14px"></p>
+    <div class="btn-row">
+      <button class="btn btn-outline" id="confirm-cancel">Cancelar</button>
+      <button class="btn btn-danger" id="confirm-ok">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="folha-render-zone"></div>
+
+<script src="vendor/jspdf.umd.min.js"></script>
+<script src="vendor/html2canvas.min.js"></script>
+<script src="js/db.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

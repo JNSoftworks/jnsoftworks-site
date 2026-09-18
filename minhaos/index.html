@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Minha OS</title>
+<meta name="description" content="Minha OS — gera e compartilha Ordens de Serviço em PDF, com cadastro de serviços e peças.">
+<meta name="theme-color" content="#11141c">
+<link rel="icon" href="icon-192.png">
+<style>
+  :root{
+    --navy:#11141c; --navy-2:#1b2030; --orange:#ed7a2c; --orange-dark:#d4661d;
+    --bg:#f2f3f6; --card:#ffffff; --border:#e0e2e8; --text:#1c1f26; --text-muted:#6b7280;
+    --danger:#d64545; --ok:#2a9d5c; --radius:14px;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --bg:#0d0f15; --card:#171a24; --border:#2a2f3d; --text:#eef0f4; --text-muted:#9aa1b1;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0d0f15; --card:#171a24; --border:#2a2f3d; --text:#eef0f4; --text-muted:#9aa1b1;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:40px 16px 60px;
+  }
+  .wrap{max-width:420px; width:100%; text-align:center}
+  .icone{width:96px; height:96px; border-radius:22px; box-shadow:0 8px 24px -10px rgba(0,0,0,.35); margin-bottom:18px}
+  h1{font-size:28px; margin:0 0 6px; letter-spacing:-.01em}
+  .sub{color:var(--text-muted); font-size:15px; line-height:1.5; margin:0 0 28px}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; text-align:left; box-shadow:0 2px 0 rgba(17,20,28,.04);
+  }
+  .btn{
+    display:block; width:100%; border:none; border-radius:10px; padding:14px 18px;
+    font-size:16px; font-weight:700; cursor:pointer; text-align:center;
+    background:var(--navy); color:#fff; transition:background .15s;
+  }
+  .btn:hover{background:var(--navy-2)}
+  .btn-laranja{background:var(--orange)}
+  .btn-laranja:hover{background:var(--orange-dark)}
+  .btn:disabled{opacity:.6; cursor:default}
+  label{display:block; font-size:13px; font-weight:600; color:var(--text-muted); margin:0 0 6px}
+  input[type=text]{
+    width:100%; border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+    font-size:16px; font-family:inherit; background:var(--bg); color:var(--text);
+    margin-bottom:12px; letter-spacing:.03em;
+  }
+  input[type=text]:focus{outline:2px solid var(--orange); outline-offset:1px}
+  .msg{font-size:14px; margin:0 0 14px; line-height:1.4}
+  .msg.erro{color:var(--danger)}
+  .msg.ok{color:var(--ok)}
+  .passo{
+    display:flex; gap:10px; align-items:flex-start; text-align:left; font-size:14px;
+    color:var(--text-muted); margin-top:22px; line-height:1.5;
+  }
+  .passo b{color:var(--text)}
+  footer{margin-top:34px; font-size:12px; color:var(--text-muted)}
+  footer a{color:inherit}
+  .hide{display:none !important}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <img class="icone" src="icon-192.png" alt="">
+    <h1>Minha OS</h1>
+    <p class="sub">Gera e compartilha Ordens de Serviço em PDF, com cadastro de serviços e peças. Feito para oficinas mecânicas.</p>
+
+    <div class="card">
+      <div id="tela-inicial">
+        <button class="btn btn-laranja" id="btn-abrir-chave">Baixar</button>
+      </div>
+
+      <div id="tela-chave" class="hide">
+        <label for="in-chave">Chave de acesso</label>
+        <input type="text" id="in-chave" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="JNSW-XXXX-XXXX-XXXX">
+        <p class="msg hide" id="msg"></p>
+        <button class="btn btn-laranja" id="btn-validar">Confirmar</button>
+      </div>
+
+      <div id="tela-sucesso" class="hide">
+        <p class="msg ok">Chave válida! Toque no botão abaixo para abrir o Minha OS e instalar.</p>
+        <a class="btn btn-laranja" id="link-abrir" href="#" target="_blank" rel="noopener">Abrir Minha OS</a>
+        <div class="passo">
+          <span>📲</span>
+          <span>Depois de abrir, use o menu do navegador e escolha <b>"Adicionar à Tela de Início"</b> (ou "Instalar app") para ficar com o ícone salvo no celular, como um aplicativo normal.</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>Já instalou antes? As atualizações acontecem sozinhas, sem precisar de chave nova.<br>Dúvidas: <a href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a></footer>
+  </div>
+
+<script>
+(() => {
+  // TODO: trocar pela URL real do Worker depois do deploy (ex.: https://keys.<conta>.workers.dev)
+  const WORKER_URL = "https://keys.jnsoftworks.workers.dev";
+  const PRODUTO = "minhaos";
+
+  const telaInicial = document.getElementById("tela-inicial");
+  const telaChave = document.getElementById("tela-chave");
+  const telaSucesso = document.getElementById("tela-sucesso");
+  const inChave = document.getElementById("in-chave");
+  const btnValidar = document.getElementById("btn-validar");
+  const msg = document.getElementById("msg");
+  const linkAbrir = document.getElementById("link-abrir");
+
+  const MOTIVOS = {
+    invalida: "Chave não encontrada. Confira se digitou certo.",
+    esgotada: "Essa chave já foi usada e não tem mais downloads disponíveis.",
+    chave_vazia: "Digite a chave de acesso.",
+    produto_invalido: "Erro interno (produto inválido). Avise o suporte.",
+    requisicao_invalida: "Não deu para validar agora. Tente de novo em instantes.",
+  };
+
+  document.getElementById("btn-abrir-chave").addEventListener("click", () => {
+    telaInicial.classList.add("hide");
+    telaChave.classList.remove("hide");
+    inChave.focus();
+  });
+
+  async function validar() {
+    const chave = inChave.value.trim();
+    if (!chave) {
+      msg.textContent = MOTIVOS.chave_vazia;
+      msg.className = "msg erro";
+      return;
+    }
+    btnValidar.disabled = true;
+    btnValidar.textContent = "Verificando...";
+    msg.className = "msg hide";
+
+    try {
+      const resp = await fetch(`${WORKER_URL}/validar`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chave, produto: PRODUTO }),
+      });
+      const dados = await resp.json();
+      if (dados.ok) {
+        linkAbrir.href = dados.url;
+        telaChave.classList.add("hide");
+        telaSucesso.classList.remove("hide");
+      } else {
+        msg.textContent = MOTIVOS[dados.motivo] || "Não foi possível validar essa chave.";
+        msg.className = "msg erro";
+      }
+    } catch (e) {
+      msg.textContent = "Sem conexão com o servidor de validação. Tente de novo.";
+      msg.className = "msg erro";
+    } finally {
+      btnValidar.disabled = false;
+      btnValidar.textContent = "Confirmar";
+    }
+  }
+
+  btnValidar.addEventListener("click", validar);
+  inChave.addEventListener("keydown", (e) => { if (e.key === "Enter") validar(); });
+})();
+</script>
+</body>
+</html>
