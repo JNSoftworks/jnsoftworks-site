@@ -60,6 +60,8 @@
   .passo b{color:var(--text)}
   footer{margin-top:34px; font-size:12px; color:var(--text-muted)}
   footer a{color:inherit}
+  .link-secundario{display:block; margin-top:14px; font-size:13px; font-weight:600; color:var(--text-muted); text-decoration:none}
+  .link-secundario:hover{color:var(--orange-dark)}
   .hide{display:none !important}
 </style>
 </head>
@@ -72,6 +74,7 @@
     <div class="card">
       <div id="tela-inicial">
         <button class="btn btn-laranja" id="btn-abrir-chave">Baixar</button>
+        <a class="link-secundario" id="link-comprar" href="#" target="_blank" rel="noopener">Ainda não comprou? Compre aqui</a>
       </div>
 
       <div id="tela-chave" class="hide">
@@ -98,6 +101,9 @@
 (() => {
   const WORKER_URL = "https://keys.jnsoftworks.workers.dev";
   const PRODUTO = "supern";
+  // TODO: trocar pelo link real de checkout do Super N na Eduzz (cadastro do produto ainda não feito)
+  const URL_COMPRA = "https://sun.eduzz.com/SEU-ID-AQUI";
+  document.getElementById("link-comprar").href = URL_COMPRA;
 
   const telaInicial = document.getElementById("tela-inicial");
   const telaChave = document.getElementById("tela-chave");
@@ -107,12 +113,31 @@
   const msg = document.getElementById("msg");
   const linkAbrir = document.getElementById("link-abrir");
 
+  // Identifica esse NAVEGADOR (não a pessoa) de forma estável, pra revalidar
+  // a mesma chave no mesmo aparelho não gastar um "uso" a mais — só conta
+  // como um aparelho novo de verdade quando o id muda (limpou dados do site,
+  // outro navegador, etc.).
+  function pegarDispositivoId() {
+    try {
+      let id = localStorage.getItem("jnsw.dispositivoId");
+      if (!id) {
+        id = (crypto.randomUUID ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+        localStorage.setItem("jnsw.dispositivoId", id);
+      }
+      return id;
+    } catch (e) {
+      return "";
+    }
+  }
+
   const MOTIVOS = {
     invalida: "Chave não encontrada. Confira se digitou certo.",
-    esgotada: "Essa chave já foi usada e não tem mais downloads disponíveis.",
+    esgotada: "Essa chave já atingiu o limite de aparelhos ativos. Se você trocou de aparelho, a vaga libera sozinha em alguns dias — ou fale com o suporte: contact@jnsoftworks.com",
     chave_vazia: "Digite a chave de acesso.",
     produto_invalido: "Erro interno (produto inválido). Avise o suporte.",
     requisicao_invalida: "Não deu para validar agora. Tente de novo em instantes.",
+    revogada: "Esse acesso foi revogado. Fale com o suporte pra regularizar.",
+    trial_expirado: "Seu período de teste acabou. Compre pra continuar usando.",
   };
 
   document.getElementById("btn-abrir-chave").addEventListener("click", () => {
@@ -136,7 +161,7 @@
       const resp = await fetch(`${WORKER_URL}/validar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chave, produto: PRODUTO }),
+        body: JSON.stringify({ chave, produto: PRODUTO, dispositivoId: pegarDispositivoId() }),
       });
       const dados = await resp.json();
       if (dados.ok) {
