@@ -74,7 +74,6 @@
     <div class="card">
       <div id="tela-inicial">
         <button class="btn btn-laranja" id="btn-abrir-chave">Baixar</button>
-        <a class="link-secundario" id="link-comprar" href="#" target="_blank" rel="noopener">Ainda não comprou? Compre aqui</a>
       </div>
 
       <div id="tela-chave" class="hide">
@@ -92,6 +91,8 @@
           <span>Depois de abrir, toque em <b>"Instalar no celular"</b> dentro do app para ficar com o ícone salvo, como um aplicativo normal — funciona até sem internet.</span>
         </div>
       </div>
+
+      <a class="link-secundario" id="link-comprar" href="#" target="_blank" rel="noopener">Ainda não comprou? Compre aqui</a>
     </div>
 
     <footer>Já instalou antes? As atualizações acontecem sozinhas, sem precisar de chave nova.<br>Dúvidas: <a href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a></footer>
@@ -112,6 +113,7 @@
   const btnValidar = document.getElementById("btn-validar");
   const msg = document.getElementById("msg");
   const linkAbrir = document.getElementById("link-abrir");
+  const linkComprar = document.getElementById("link-comprar");
 
   // Identifica esse NAVEGADOR (não a pessoa) de forma estável, pra revalidar
   // a mesma chave no mesmo aparelho não gastar um "uso" a mais — só conta
@@ -170,6 +172,7 @@
         linkAbrir.href = dados.url;
         telaChave.classList.add("hide");
         telaSucesso.classList.remove("hide");
+        linkComprar.classList.add("hide");
       } else {
         msg.textContent = MOTIVOS[dados.motivo] || "Não foi possível validar essa chave.";
         msg.className = "msg erro";
