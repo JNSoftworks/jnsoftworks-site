@@ -150,6 +150,21 @@
     inChave.focus();
   });
 
+  // Link mágico (?chave=...) pra mandar pro cliente por WhatsApp sem ele
+  // precisar digitar a chave de 16 caracteres na mão — só preenche o campo,
+  // NUNCA valida sozinho: bot de preview de link (WhatsApp/e-mail) abre a
+  // URL automaticamente, e se isso disparasse o POST /validar sozinho
+  // queimaria uma chave de uso único antes da pessoa real clicar (mesmo
+  // motivo documentado no LEIAME pra não colocar chave em link de auto-login).
+  // A pessoa ainda precisa tocar "Confirmar" de verdade.
+  const chaveDaUrl = new URLSearchParams(location.search).get("chave");
+  if (chaveDaUrl) {
+    telaInicial.classList.add("hide");
+    telaChave.classList.remove("hide");
+    inChave.value = chaveDaUrl.trim();
+    history.replaceState(null, "", location.pathname);
+  }
+
   async function validar() {
     const chave = inChave.value.trim();
     if (!chave) {
