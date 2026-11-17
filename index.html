@@ -1,11 +1,15 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JN Softworks — Building Ideas</title>
-<meta name="description" content="JN Softworks is an independent studio creating games and tools for game developers. We're starting with Questryn, a node-based dialogue system for Unreal Engine — with original games and more tools to come.">
+<meta name="description" content="JN Softworks is an independent studio building plugins and tools for Unreal Engine: dialogue, AI navigation and multiplayer systems for game developers.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jnsoftworks.com/">
 <meta property="og:title" content="JN Softworks — Building Ideas">
-<meta property="og:description" content="JN Softworks is an independent studio creating games and tools for game developers. We're starting with Questryn, a node-based dialogue system for Unreal Engine — with original games and more tools to come.">
+<meta property="og:description" content="JN Softworks is an independent studio building plugins and tools for Unreal Engine: dialogue, AI navigation and multiplayer systems for game developers.">
 <meta property="og:image" content="https://jnsoftworks.com/assets/banner.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -175,77 +179,18 @@
   }
   .section-label::before { content: "// "; color: var(--orange); }
 
-  .product-card {
-    background: var(--bg-panel);
-    border: 1px solid var(--bg-panel-border);
-    border-radius: 10px;
-    padding: 1.9rem;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-  .product-card:hover {
-    border-color: var(--orange-dim);
-    transform: translateY(-2px);
-  }
-
-  .product-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .product-head h3 {
-    font-family: var(--font-mono);
-    font-size: 1.4rem;
-    margin: 0;
-    letter-spacing: 0.02em;
-  }
-
-  .badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--orange);
-    border: 1px solid var(--orange-dim);
-    border-radius: 999px;
-    padding: 0.25rem 0.65rem;
-    white-space: nowrap;
-  }
-
-  .product-tag {
-    font-family: var(--font-mono);
-    color: var(--grey);
-    font-size: 0.95rem;
-    margin: 0.6rem 0 0;
-  }
-
-  .product-desc {
-    font-size: 1rem;
+  .plugins-note {
+    font-size: 0.98rem;
     line-height: 1.6;
-    color: var(--text);
-    margin: 0.9rem 0 0;
-    max-width: 42em;
+    color: var(--text-dim);
+    margin: 0;
   }
-
-  .product-links {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.4rem;
-    flex-wrap: wrap;
+  .plugins-note a {
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid var(--orange-dim);
   }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--navy), var(--orange));
-    color: #06090f;
-    font-weight: 700;
-    border: 1px solid transparent;
-  }
-  .btn-primary:hover {
-    box-shadow: 0 0 0 1px var(--orange-dim), 0 6px 18px -6px rgba(255, 107, 53, 0.45);
-    transform: translateY(-1px);
-  }
+  .plugins-note a:hover { border-color: var(--orange); }
 
   footer {
     margin-top: 6rem;
@@ -298,9 +243,8 @@
     <img class="banner fade-in" src="assets/banner.png" alt="JN Softworks — Building Ideas" width="1400" height="788">
     <h1 class="sr-only">JN Softworks — Building Ideas</h1>
     <p class="hero-copy fade-in d1">
-      JN Softworks is an independent studio creating games and tools for game developers.
-      We're starting with <span class="studio-accent">Questryn</span>, a node-based dialogue system
-      for Unreal Engine — with original games and more tools to come.
+      JN Softworks is an independent studio building <span class="studio-accent">plugins and tools for Unreal Engine</span>:
+      dialogue, AI navigation and multiplayer systems for game developers.
     </p>
     <div class="hero-links fade-in d2">
       <a class="btn btn-ghost" href="https://discord.gg/2rfkdk3meh">Discord ↗</a>
@@ -310,24 +254,11 @@
 
   <main>
     <section class="products fade-in d4">
-      <p class="section-label">products</p>
-      <article class="product-card">
-        <div class="product-head">
-          <h3>Questryn</h3>
-          <span class="badge">Coming soon on Fab</span>
-        </div>
-        <p class="product-tag">Node-based dialogue system for Unreal Engine</p>
-        <p class="product-desc">
-          A visual, node-based editor for branching, condition-driven dialogue.
-          Built for fast authoring, flexible DataTable-backed content, and dialogue
-          trees that stay maintainable as they grow.
-        </p>
-        <div class="product-links">
-          <a class="btn btn-primary" href="#">View on Fab →</a>
-          <a class="btn btn-ghost" href="assets/Questryn_User_Guide.pdf" target="_blank" rel="noopener">User Guide (PDF)</a>
-          <a class="btn btn-ghost" href="https://discord.gg/2rfkdk3meh">Support Discord</a>
-        </div>
-      </article>
+      <p class="section-label">business inquiries</p>
+      <p class="plugins-note">
+        For business inquiries, contact
+        <a href="mailto:contact@jnsoftworks.com">contact@jnsoftworks.com</a>.
+      </p>
     </section>
   </main>
 
